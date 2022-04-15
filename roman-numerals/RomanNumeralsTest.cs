@@ -59,5 +59,30 @@ namespace roman_numerals
             string six = converter.Convert(6);
             Assert.That(six, Is.EqualTo("VI"));
         }
+
+        [Test]
+        public void NineReturnsIX()
+        {
+            string nine = converter.Convert(9);
+            Assert.That(nine, Is.EqualTo("IX"));
+        }
+
+        [Test]
+        public void ThisYear2022ReturnsMMXXII()
+        {
+            string thisYear = converter.Convert(2022);
+            Assert.That(thisYear, Is.EqualTo("MMXXII"));
+        }
+
+        [Test]
+        [TestCase(54, "LIV")]
+        [TestCase(498, "CDXCVIII")]
+        public void ConvertReturnsRomanNumerals(int number, string expected)
+        {
+            string actual = converter.Convert(number);
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+
     }
 }
