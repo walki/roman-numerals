@@ -8,9 +8,14 @@ namespace roman_numerals
         {
         }
 
-        internal string Convert(int v)
+        internal string Convert(int number)
         {
-            return "I";
+            string roman = "";
+            for (int i = 0; i < number; i++)
+            {
+                roman += "I";
+            }
+            return roman;
         }
     }
 }

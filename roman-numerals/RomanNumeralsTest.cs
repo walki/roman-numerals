@@ -11,11 +11,19 @@ namespace roman_numerals
     class RomanNumeralsTest
     {
         [Test]
-        public void Nothing()
+        public void OneReturnsI()
         {
             RomanNumeralConverter converter = new RomanNumeralConverter();
             string one = converter.Convert(1);
             Assert.That(one, Is.EqualTo("I"));
+        }
+
+        [Test]
+        public void TwoReturnsII()
+        {
+            RomanNumeralConverter converter = new RomanNumeralConverter();
+            string one = converter.Convert(2);
+            Assert.That(one, Is.EqualTo("II"));
         }
 
 
