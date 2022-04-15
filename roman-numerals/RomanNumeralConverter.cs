@@ -10,12 +10,26 @@ namespace roman_numerals
 
         internal string Convert(int number)
         {
-            string roman = "";
-            for (int i = 0; i < number; i++)
+            string roman = ""; 
+            if (number >= 5)
             {
-                roman += "I";
+                roman += "V";
+                number -= 5;
             }
+            else if (number >= 4)
+            {
+                roman += "IV";
+                number -= 4;
+            }
+
+            roman += Repeat('I', number);
+
             return roman;
+        }
+
+        private string Repeat(char ch, int count)
+        {
+            return new string(ch, count);
         }
     }
 }
