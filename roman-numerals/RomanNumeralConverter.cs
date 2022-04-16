@@ -54,5 +54,10 @@ namespace roman_numerals
         {
             return new string(ch, count);
         }
+
+        internal int Convert(string roman)
+        {
+            return roman.Where(c => c == 'I').Count();
+        }
     }
 }

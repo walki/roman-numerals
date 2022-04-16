@@ -84,5 +84,27 @@ namespace roman_numerals
         }
 
 
+        [Test]
+        public void Convert_I_toOne()
+        {
+            int one = converter.Convert("I");
+            Assert.That(one, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Convert_II_toTwo()
+        {
+            int two = converter.Convert("II");
+            Assert.That(two, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void Convert_III_toThreee()
+        {
+            int three = converter.Convert("III");
+            Assert.That(three, Is.EqualTo(3));
+        }
+
+
     }
 }
