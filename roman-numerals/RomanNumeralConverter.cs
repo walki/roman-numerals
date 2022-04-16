@@ -7,7 +7,7 @@ namespace roman_numerals
     internal class RomanNumeralConverter
     {
 
-        Dictionary<int, string> specialNumbers = new Dictionary<int, string>()
+        Dictionary<int, string> numToRoman = new Dictionary<int, string>()
         {
             { 1, "I" },
             { 4, "IV" },
@@ -24,11 +24,29 @@ namespace roman_numerals
             { 1000, "M" },
         };
 
+
+        Dictionary<string, int> romanToNum = new Dictionary<string, int>()
+        {
+            { "I",  1 },
+            { "IV", 4 },
+            { "V",  5 },
+            { "IX", 9 },
+            { "X",  10 },
+            { "XL", 40 },
+            { "L",  50 },
+            { "XC", 90 },
+            { "C",  100 },
+            { "CD", 400 },
+            { "D",  500 },
+            { "DM", 900 },
+            { "M",  1000 },
+        };
+
         List<int> keys;
 
         public RomanNumeralConverter()
         {
-            keys = specialNumbers.Keys.ToList();
+            keys = numToRoman.Keys.ToList();
             keys.Sort();
             keys.Reverse();
         }
@@ -37,42 +55,43 @@ namespace roman_numerals
         internal string Convert(int number)
         {
             string roman = "";
-            
-            foreach(int key in keys)
+
+            foreach (int key in keys)
             {
                 while (number >= key)
                 {
-                    roman += specialNumbers[key];
+                    roman += numToRoman[key];
                     number -= key;
                 }
             }
-            
+
             return roman;
         }
 
-        private string Repeat(char ch, int count)
-        {
-            return new string(ch, count);
-        }
 
         internal int Convert(string roman)
         {
             int number = 0;
 
-            for(int i = 0; i < roman.Length; i++)
+            while (roman.Length > 0)
             {
-                if (i+1 < roman.Length && roman[i] == 'I' && roman[i+1] == 'V')
+                if (IsLeftSubtractingDigit(roman))
                 {
-                    number += 4;
-                    i++;
+                    number += romanToNum[roman.Substring(0, 2)];
+                    roman = roman.Substring(2);
                 }
-                else if (roman[i] == 'I')
+                else
                 {
-                    number++;
+                    number += romanToNum[roman.Substring(0, 1)];
+                    roman = roman.Substring(1);
                 }
             }
-
             return number;
+        }
+
+        private bool IsLeftSubtractingDigit(string roman)
+        {
+            return roman.Length > 1 && romanToNum.Keys.Contains(roman.Substring(0, 2));
         }
     }
 }

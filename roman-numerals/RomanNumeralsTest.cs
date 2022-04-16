@@ -19,62 +19,14 @@ namespace roman_numerals
         }
 
         [Test]
-        public void OneReturnsI()
-        {
-            string one = converter.Convert(1);
-            Assert.That(one, Is.EqualTo("I"));
-        }
-
-        [Test]
-        public void TwoReturnsII()
-        {
-            string two = converter.Convert(2);
-            Assert.That(two, Is.EqualTo("II"));
-        }
-
-        [Test]
-        public void ThreeReturnsIII()
-        {
-            string three = converter.Convert(3);
-            Assert.That(three, Is.EqualTo("III"));
-        }
-
-        [Test]
-        public void FourReturnsIV()
-        {
-            string four = converter.Convert(4);
-            Assert.That(four, Is.EqualTo("IV"));
-        }
-
-        [Test]
-        public void FiveReturnsV()
-        {
-            string five = converter.Convert(5);
-            Assert.That(five, Is.EqualTo("V"));
-        }
-
-        [Test]
-        public void SixReturnsVI()
-        {
-            string six = converter.Convert(6);
-            Assert.That(six, Is.EqualTo("VI"));
-        }
-
-        [Test]
-        public void NineReturnsIX()
-        {
-            string nine = converter.Convert(9);
-            Assert.That(nine, Is.EqualTo("IX"));
-        }
-
-        [Test]
-        public void ThisYear2022ReturnsMMXXII()
-        {
-            string thisYear = converter.Convert(2022);
-            Assert.That(thisYear, Is.EqualTo("MMXXII"));
-        }
-
-        [Test]
+        [TestCase(1, "I")]
+        [TestCase(2, "II")]
+        [TestCase(3, "III")]
+        [TestCase(4, "IV")]
+        [TestCase(5, "V")]
+        [TestCase(6, "VI")]
+        [TestCase(9, "IX")]
+        [TestCase(2022, "MMXXII")]
         [TestCase(54, "LIV")]
         [TestCase(498, "CDXCVIII")]
         public void ConvertReturnsRomanNumerals(int number, string expected)
@@ -85,31 +37,18 @@ namespace roman_numerals
 
 
         [Test]
-        public void Convert_I_toOne()
+        [TestCase("I", 1)]
+        [TestCase("II", 2)]
+        [TestCase("III", 3)]
+        [TestCase("IV", 4)]
+        [TestCase("V", 5)]
+        [TestCase("VI", 6)]
+        [TestCase("IX", 9)]
+        public void ConvertRomanNumeralsToInts(string roman, int expected)
         {
-            int one = converter.Convert("I");
-            Assert.That(one, Is.EqualTo(1));
+            int actual = converter.Convert(roman);
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
-        [Test]
-        public void Convert_II_toTwo()
-        {
-            int two = converter.Convert("II");
-            Assert.That(two, Is.EqualTo(2));
-        }
-
-        [Test]
-        public void Convert_III_toThreee()
-        {
-            int three = converter.Convert("III");
-            Assert.That(three, Is.EqualTo(3));
-        }
-
-        [Test]
-        public void Convert_IV_toFour()
-        {
-            int four = converter.Convert("IV");
-            Assert.That(four, Is.EqualTo(4));
-        }
     }
 }
