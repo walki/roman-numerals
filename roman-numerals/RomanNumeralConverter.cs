@@ -57,7 +57,22 @@ namespace roman_numerals
 
         internal int Convert(string roman)
         {
-            return roman.Where(c => c == 'I').Count();
+            int number = 0;
+
+            for(int i = 0; i < roman.Length; i++)
+            {
+                if (i+1 < roman.Length && roman[i] == 'I' && roman[i+1] == 'V')
+                {
+                    number += 4;
+                    i++;
+                }
+                else if (roman[i] == 'I')
+                {
+                    number++;
+                }
+            }
+
+            return number;
         }
     }
 }

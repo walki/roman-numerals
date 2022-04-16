@@ -105,6 +105,11 @@ namespace roman_numerals
             Assert.That(three, Is.EqualTo(3));
         }
 
-
+        [Test]
+        public void Convert_IV_toFour()
+        {
+            int four = converter.Convert("IV");
+            Assert.That(four, Is.EqualTo(4));
+        }
     }
 }
