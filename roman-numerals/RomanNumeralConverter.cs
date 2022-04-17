@@ -93,5 +93,10 @@ namespace roman_numerals
         {
             return roman.Length > 1 && romanToNum.Keys.Contains(roman.Substring(0, 2));
         }
+
+        internal bool Validate(string roman)
+        {
+            return true;
+        }
     }
 }

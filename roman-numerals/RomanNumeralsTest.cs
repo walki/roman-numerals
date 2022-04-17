@@ -44,9 +44,21 @@ namespace roman_numerals
         [TestCase("V", 5)]
         [TestCase("VI", 6)]
         [TestCase("IX", 9)]
+        [TestCase("MMXXXII", 2032)]
+        [TestCase("LXXIV", 74)]
+        [TestCase("CDXCVIII", 498)]
         public void ConvertRomanNumeralsToInts(string roman, int expected)
         {
             int actual = converter.Convert(roman);
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        [TestCase("III", true, Description = "I can be repeated up to three times")]
+        //[TestCase("IIII", false, Description = "I cannot be repeated four times")]
+        public void ValidateRomanNumeral(string roman, bool expected)
+        {
+            bool actual = converter.Validate(roman);
             Assert.That(actual, Is.EqualTo(expected));
         }
 
