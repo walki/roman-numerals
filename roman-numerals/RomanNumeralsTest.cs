@@ -54,8 +54,11 @@ namespace roman_numerals
         }
 
         [Test]
+        [TestCase("MDCLXVI", true, Description = "Valid characters")]
+        [TestCase("G", false, Description = "Invalid charactiers")]
         [TestCase("III", true, Description = "I can be repeated up to three times")]
-        //[TestCase("IIII", false, Description = "I cannot be repeated four times")]
+        [TestCase("IIII", false, Description = "I cannot be repeated four times")]
+        [TestCase("LL", false,Description = "Only I, X, C, M can repeat")]
         public void ValidateRomanNumeral(string roman, bool expected)
         {
             bool actual = converter.Validate(roman);

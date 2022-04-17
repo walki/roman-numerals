@@ -44,6 +44,9 @@ namespace roman_numerals
 
         List<int> keys;
 
+        List<char> validChars = new List<char>() { 'I','V','X','L','C','D','M' };
+        List<char> validRepeatChars = new List<char>() { 'I', 'X', 'C', 'M' };
+
         public RomanNumeralConverter()
         {
             keys = numToRoman.Keys.ToList();
@@ -96,7 +99,47 @@ namespace roman_numerals
 
         internal bool Validate(string roman)
         {
-            return true;
+            return IsOnlyValidChars(roman) && AreRepeatingCharsValid(roman);
+        }
+
+        private bool IsOnlyValidChars(string roman)
+        {
+            return roman.Where(c => !validChars.Contains(c)).Count() == 0;
+        }
+
+        private bool AreRepeatingCharsValid(string roman)
+        {
+            bool valid = true;
+            char last = '\0';
+            int repeat = 1;
+
+            foreach (var digit in roman)
+            {
+                if (digit == last)
+                {
+                    repeat++;
+                    last = digit;
+                }
+                else
+                {
+                    repeat = 1;
+                    last = digit;
+                }
+
+                if (IsInvalidRepeat(repeat, digit))
+                {
+                    valid = false;
+                }
+            }
+
+            return valid;
+        }
+
+        private bool IsInvalidRepeat(int repeat, char digit)
+        {
+
+            return (repeat > 1 && !validRepeatChars.Contains(digit)) 
+                || repeat > 3;
         }
     }
 }
